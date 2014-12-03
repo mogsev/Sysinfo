@@ -23,11 +23,11 @@ import javax.swing.SwingWorker;
 
 public class NewJDialog extends javax.swing.JDialog {
     private static OutputStream out;
-    private File windowstemp;
-    private static File systemtemp;
-    private static File internettemp;
-    private static File wininternettemp;
-    private static DeleteTask deletetask;
+    private File windowsTemp;
+    private static File systemTemp;
+    private static File internetTemp;
+    private static File winInternetTemp;
+    private static DeleteTask deleteTask;
     
     /**
      * @see Task for thread in background 
@@ -38,8 +38,7 @@ public class NewJDialog extends javax.swing.JDialog {
             redirectSystemStreams();
             deleteAll();
             return null;
-        }
-        
+        }        
         @Override
         public void done() {
             Toolkit.getDefaultToolkit().beep();
@@ -47,12 +46,10 @@ public class NewJDialog extends javax.swing.JDialog {
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
             setCursor(null);
             jTextArea1.append("Удаление завершено успешно.\n");
-        }
-        
+        }        
     }
                 
     /**
-     * 
      * @param text final String from redirect main Stream
      */
     private void updateTextArea(final String text) {                            
@@ -91,23 +88,31 @@ public class NewJDialog extends javax.swing.JDialog {
      */
     private void deleteAll() {        
         try {           
-            windowstemp = new File(Delutil.getDirWindowsTemp());            
-            if (windowstemp.exists()) {
-                sysinfo.Delutil.dirfiles(windowstemp);                 
-            }  else {System.out.println(windowstemp.getAbsolutePath() + " не существует");}
-            systemtemp = new File(Delutil.getDirSystemTemp());
-            if (systemtemp.exists()) {                
-                sysinfo.Delutil.dirfiles(systemtemp);                                
-            } else {System.out.println(systemtemp.getAbsolutePath() + " не существует");}
-            internettemp = new File(Delutil.getDirInternetTemp());
-            if (internettemp.exists()) {
-                sysinfo.Delutil.dirfiles(internettemp);                                
-            } else {System.out.println(internettemp.getAbsolutePath() + " не существует");}
-            wininternettemp = new File(Delutil.getDirWinXPInternetTemp());
-            if (wininternettemp.exists()) {
-                sysinfo.Delutil.dirfiles(wininternettemp);                                
-            } else {System.out.println(wininternettemp.getAbsolutePath() + " не существует");}            
-            jLabel1.setText("Временные файлы удалены!");              
+            windowsTemp = new File(Delutil.getDirWindowsTemp());            
+            if (windowsTemp.exists()) {
+                sysinfo.Delutil.dirFiles(windowsTemp);                 
+            } else {
+                System.out.println(windowsTemp.getAbsolutePath() + " не существует");
+            }
+            systemTemp = new File(Delutil.getDirSystemTemp());
+            if (systemTemp.exists()) {                
+                sysinfo.Delutil.dirFiles(systemTemp);                                
+            } else {
+                System.out.println(systemTemp.getAbsolutePath() + " не существует");
+            }
+            internetTemp = new File(Delutil.getDirInternetTemp());
+            if (internetTemp.exists()) {
+                sysinfo.Delutil.dirFiles(internetTemp);                                
+            } else {
+                System.out.println(internetTemp.getAbsolutePath() + " не существует");
+            }
+            winInternetTemp = new File(Delutil.getDirWinXPInternetTemp());
+            if (winInternetTemp.exists()) {
+                sysinfo.Delutil.dirFiles(winInternetTemp);                                
+            } else {
+                System.out.println(winInternetTemp.getAbsolutePath() + " не существует");
+            }            
+            jLabel1.setText("Удаление завершено успешно!");              
         }
         catch(FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -115,7 +120,9 @@ public class NewJDialog extends javax.swing.JDialog {
     }
     
     /**
-     * Creates new form NewJDialog
+     * Creates new form NewJDial
+     * @param parent 
+     * @param modal
      */    
     public NewJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -201,8 +208,7 @@ public class NewJDialog extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,13 +239,16 @@ public class NewJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:  
-        jButton1.setEnabled(false);
-        setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        //run task
-        deletetask = new DeleteTask();
-        deletetask.execute();
+        try {
+            jButton1.setEnabled(false);
+            setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+            //run task
+            deleteTask = new DeleteTask();
+            deleteTask.execute();
+        } catch(Exception ex) {
+            JOptionPane.showMessageDialog(null,"Ошибка удаления " + ex);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -271,6 +280,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {        
+            @Override
             public void run() {                       
                 NewJDialog dialog = new NewJDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {                    

@@ -22,18 +22,21 @@ public class NewJDialogAbout extends javax.swing.JDialog {
     
     /**
      * Creates new form NewJDialogAbout
+     * @param parent
+     * @param modal
      */
     public NewJDialogAbout(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jLabel1.setText(Sysinfo.programname + " "+ Sysinfo.programversion);
-        jLabel6.setText(Sysinfo.sourceforgeurl);
-        jLabel7.setText(Sysinfo.githuburl);
-        jLabel5.setText("EMail: " + Sysinfo.email);
+        jLabel1.setText(Sysinfo.PROGRAM_NAME + " "+ Sysinfo.PROGRAM_VERSION);
+        jLabel6.setText(Sysinfo.SF_URL);
+        jLabel7.setText(Sysinfo.GITHUB_URL);
+        jLabel5.setText("EMail: " + Sysinfo.EMAIL);
         // display link to https://github.com
         this.jLabel7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.jLabel7.setForeground(new java.awt.Color(0, 0, 204));
         this.jLabel7.addMouseListener(new MouseAdapter() {
+        @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getClickCount() > 0) {
                 if (Desktop.isDesktopSupported()) {
@@ -41,10 +44,8 @@ public class NewJDialogAbout extends javax.swing.JDialog {
                     try {
                         URI uri = new URI(jLabel7.getText());
                         desktop.browse(uri);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (URISyntaxException ex) {
-                        ex.printStackTrace();
+                    } catch (IOException | URISyntaxException ex) {
+                        System.out.println(ex);
                     }
                 }
             }
@@ -54,6 +55,7 @@ public class NewJDialogAbout extends javax.swing.JDialog {
         this.jLabel6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         this.jLabel6.addMouseListener(new MouseAdapter() {
+        @Override
         public void mouseClicked(MouseEvent e) {
             if (e.getClickCount() > 0) {
                 if (Desktop.isDesktopSupported()) {
@@ -61,10 +63,8 @@ public class NewJDialogAbout extends javax.swing.JDialog {
                     try {
                         URI uri = new URI(jLabel6.getText());
                         desktop.browse(uri);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (URISyntaxException ex) {
-                        ex.printStackTrace();
+                    } catch (IOException | URISyntaxException ex) {
+                        System.out.println(ex);
                     }
                 }
             }
@@ -247,6 +247,7 @@ public class NewJDialogAbout extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 NewJDialogAbout dialog = new NewJDialogAbout(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

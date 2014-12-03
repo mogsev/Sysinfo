@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Delutil {
-    private static String temp = "c://windows//temp//";
+    private final static String TEMP = "c://windows//temp//";
     private static String systemtemp;
     private static String userhome;
     private static String internettemp;
@@ -24,7 +24,7 @@ public class Delutil {
      * @return dir the full path on directory "Windows system temp"
      */
     public static String getDirWindowsTemp() {                
-        return temp;
+        return TEMP;
     }
     
     /**
@@ -48,7 +48,7 @@ public class Delutil {
      */
     public static String getDirInternetTemp() {
         result = new StringBuilder();
-        internettemp = result.append(Delutil.getDirUserHome() + "//AppData//Local//Microsoft//Windows//Temporary Internet Files//").toString();
+        internettemp = result.append(Delutil.getDirUserHome()).append("//AppData//Local//Microsoft//Windows//Temporary Internet Files//").toString();
         return internettemp;
     }
     
@@ -57,14 +57,15 @@ public class Delutil {
      */
     public static String getDirWinXPInternetTemp() {        
         result = new StringBuilder();
-        internettemp = result.append(Delutil.getDirUserHome() + "//Local Settings//Temporary Internet Files//").toString();
+        internettemp = result.append(Delutil.getDirUserHome()).append("//Local Settings//Temporary Internet Files//").toString();
         return internettemp;
     }
     
     /**
      * @param dir the full path on directory
+     * @throws java.io.FileNotFoundException
      */
-    public static void dirfiles(File dir) throws FileNotFoundException {
+    public static void dirFiles(File dir) throws FileNotFoundException {
         if (dir.listFiles() == null) { 
             System.out.println(dir.getAbsolutePath() + " do not have access to the object");
         } else { 
@@ -84,7 +85,7 @@ public class Delutil {
                         System.out.println(listto.getAbsolutePath() + " this directory is deleted");                        
                     } else {
                      System.out.println(listto.getAbsolutePath() + " this directory can not be deleted!");
-                     dirfiles(new File(listto.getAbsolutePath()));
+                     dirFiles(new File(listto.getAbsolutePath()));
                     }
                     listto.delete();
                 }            

@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
  * @author zhenya mogsev@gmail.com
  */
 public class Sysinfo extends javax.swing.JFrame {
-    public static String programname = "Systems Short Information";
-    public static String programversion = "1.1.7";
-    public static String email = "mogsev@gmail.com";
-    public static String sourceforgeurl = "http://sourceforge.net";
-    public static String githuburl = "https://github.com/mogsev/Sysinfo";    
+    static final String PROGRAM_NAME = "Systems Short Information";
+    static final String PROGRAM_VERSION = "1.2.0";
+    static final String EMAIL = "mogsev@gmail.com";
+    static final String SF_URL = "http://sourceforge.net";
+    static final String GITHUB_URL = "https://github.com/mogsev/Sysinfo";    
     private static String hostname;
     private static String hostip;
     private static String username;
