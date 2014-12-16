@@ -12,16 +12,17 @@ import java.net.URISyntaxException;
  * @author zhenya mogsev@gmail.com
  */
 public class NewJDialogAbout extends javax.swing.JDialog {
-    
+
     /**
      * Creates new form NewJDialogAbout
+     *
      * @param parent
      * @param modal
      */
     public NewJDialogAbout(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        jLabel1.setText(Sysinfo.PROGRAM_NAME + " "+ Sysinfo.PROGRAM_VERSION);
+        jLabel1.setText(Sysinfo.PROGRAM_NAME + " " + Sysinfo.PROGRAM_VERSION);
         jLabel6.setText(Sysinfo.SF_URL);
         jLabel7.setText(Sysinfo.GITHUB_URL);
         jLabel5.setText("EMail: " + Sysinfo.EMAIL);
@@ -29,39 +30,39 @@ public class NewJDialogAbout extends javax.swing.JDialog {
         this.jLabel7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.jLabel7.setForeground(new java.awt.Color(0, 0, 204));
         this.jLabel7.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if (e.getClickCount() > 0) {
-                if (Desktop.isDesktopSupported()) {
-                    Desktop desktop = Desktop.getDesktop();
-                    try {
-                        URI uri = new URI(jLabel7.getText());
-                        desktop.browse(uri);
-                    } catch (IOException | URISyntaxException ex) {
-                        System.out.println(ex);
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 0) {
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop desktop = Desktop.getDesktop();
+                        try {
+                            URI uri = new URI(jLabel7.getText());
+                            desktop.browse(uri);
+                        } catch (IOException | URISyntaxException ex) {
+                            System.out.println(ex);
+                        }
                     }
                 }
             }
-        }
-        });        
+        });
         // display link to http://sourceforge.net/
         this.jLabel6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         this.jLabel6.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if (e.getClickCount() > 0) {
-                if (Desktop.isDesktopSupported()) {
-                    Desktop desktop = Desktop.getDesktop();
-                    try {
-                        URI uri = new URI(jLabel6.getText());
-                        desktop.browse(uri);
-                    } catch (IOException | URISyntaxException ex) {
-                        System.out.println(ex);
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 0) {
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop desktop = Desktop.getDesktop();
+                        try {
+                            URI uri = new URI(jLabel6.getText());
+                            desktop.browse(uri);
+                        } catch (IOException | URISyntaxException ex) {
+                            System.out.println(ex);
+                        }
                     }
                 }
             }
-        }
         });
     }
 
@@ -252,7 +253,7 @@ public class NewJDialogAbout extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

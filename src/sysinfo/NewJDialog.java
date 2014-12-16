@@ -1,4 +1,5 @@
 package sysinfo;
+
 /**
  * @author zhenya mogsev@gmail.com
  */
@@ -15,23 +16,26 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 public class NewJDialog extends javax.swing.JDialog {
+
     private static OutputStream out;
     private File windowsTemp;
     private static File systemTemp;
     private static File internetTemp;
     private static File winInternetTemp;
     private static DeleteTask deleteTask;
-    
+
     /**
-     * @see Task for thread in background 
+     * @see Task for thread in background
      */
     class DeleteTask extends SwingWorker<Void, Void> {
+
         @Override
         public Void doInBackground() {
             redirectSystemStreams();
             deleteAll();
             return null;
-        }        
+        }
+
         @Override
         public void done() {
             Toolkit.getDefaultToolkit().beep();
@@ -39,88 +43,90 @@ public class NewJDialog extends javax.swing.JDialog {
             setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
             setCursor(null);
             jTextArea1.append("Удаление завершено успешно.\n");
-        }        
+        }
     }
-                
+
     /**
      * @param text final String from redirect main Stream
      */
-    private void updateTextArea(final String text) {                            
-        SwingUtilities.invokeLater(new Runnable() { 
+    private void updateTextArea(final String text) {
+        SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run() {                               
-                jTextArea1.append(text);                
-            }                 
-        });                
-    }  
-    
+            public void run() {
+                jTextArea1.append(text);
+            }
+        });
+    }
+
     /**
      * @see redirect main System out Stream
      */
-    private void redirectSystemStreams() {  
-        out = new OutputStream() {  
-            @Override  
-                public void write(int b) throws IOException {  
-                    updateTextArea(String.valueOf((char) b));
-                }
-            @Override  
-                public void write(byte[] b, int off, int len) throws IOException {                  
-                    updateTextArea(new String(b, off, len));                
-                }
-            @Override  
-                public void write(byte[] b) throws IOException {  
-                    write(b, 0, b.length);                      
-                }                  
-        };            
-        System.setOut(new PrintStream(out, true));  
-        System.setErr(new PrintStream(out, true)); 
+    private void redirectSystemStreams() {
+        out = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                updateTextArea(String.valueOf((char) b));
+            }
+
+            @Override
+            public void write(byte[] b, int off, int len) throws IOException {
+                updateTextArea(new String(b, off, len));
+            }
+
+            @Override
+            public void write(byte[] b) throws IOException {
+                write(b, 0, b.length);
+            }
+        };
+        System.setOut(new PrintStream(out, true));
+        System.setErr(new PrintStream(out, true));
     }
-    
+
     /**
      * @see Method delete All dir and files
      */
-    private void deleteAll() {        
-        try {           
-            windowsTemp = new File(Delutil.getDirWindowsTemp());            
+    private void deleteAll() {
+        try {
+            windowsTemp = new File(Delutil.getDirWindowsTemp());
             if (windowsTemp.exists()) {
-                sysinfo.Delutil.dirFiles(windowsTemp);                 
+                sysinfo.Delutil.dirFiles(windowsTemp);
             } else {
                 System.out.println(windowsTemp.getAbsolutePath() + " не существует");
             }
             systemTemp = new File(Delutil.getDirSystemTemp());
-            if (systemTemp.exists()) {                
-                sysinfo.Delutil.dirFiles(systemTemp);                                
+            if (systemTemp.exists()) {
+                sysinfo.Delutil.dirFiles(systemTemp);
             } else {
                 System.out.println(systemTemp.getAbsolutePath() + " не существует");
             }
             internetTemp = new File(Delutil.getDirInternetTemp());
             if (internetTemp.exists()) {
-                sysinfo.Delutil.dirFiles(internetTemp);                                
+                sysinfo.Delutil.dirFiles(internetTemp);
             } else {
                 System.out.println(internetTemp.getAbsolutePath() + " не существует");
             }
             winInternetTemp = new File(Delutil.getDirWinXPInternetTemp());
             if (winInternetTemp.exists()) {
-                sysinfo.Delutil.dirFiles(winInternetTemp);                                
+                sysinfo.Delutil.dirFiles(winInternetTemp);
             } else {
                 System.out.println(winInternetTemp.getAbsolutePath() + " не существует");
-            }            
-            jLabel1.setText("Удаление завершено успешно!");              
-        }
-        catch(FileNotFoundException ex) {
+            }
+            jLabel1.setText("Удаление завершено успешно!");
+        } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-    
+
     /**
      * Creates new form NewJDial
-     * @param parent 
+     *
+     * @param parent
      * @param modal
-     */    
+     */
     public NewJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents(); 
-        this.jLabel1.setText("Процедура очистки запущена... подождите!");        
+        initComponents();
+        this.jLabel1.setText("Процедура очистки запущена... подождите!");
     }
 
     /**
@@ -238,15 +244,15 @@ public class NewJDialog extends javax.swing.JDialog {
             //run task
             deleteTask = new DeleteTask();
             deleteTask.execute();
-        } catch(Exception ex) {
-            JOptionPane.showMessageDialog(null,"Ошибка удаления " + ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Ошибка удаления " + ex);
         }
     }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {        
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -271,19 +277,19 @@ public class NewJDialog extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {        
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() {                       
+            public void run() {
                 NewJDialog dialog = new NewJDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {                    
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
-                });                
-                dialog.setVisible(true);                 
+                });
+                dialog.setVisible(true);
             }
-        });        
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,18 +8,19 @@ import javax.swing.JOptionPane;
  * @author zhenya mogsev@gmail.com
  */
 public class Sysinfo extends javax.swing.JFrame {
+
     static final String PROGRAM_NAME = "Systems Short Information";
-    static final String PROGRAM_VERSION = "1.2.0";
+    static final String PROGRAM_VERSION = "1.4.51";
     static final String EMAIL = "mogsev@gmail.com";
     static final String SF_URL = "http://sourceforge.net";
-    static final String GITHUB_URL = "https://github.com/mogsev/Sysinfo";    
+    static final String GITHUB_URL = "https://github.com/mogsev/Sysinfo";
     private static String hostname;
     private static String hostip;
     private static String username;
     private static String arch;
     private static String osname;
     private static String osversion;
-    
+
     /**
      * Creates new form Sysinfo
      */
@@ -216,13 +217,12 @@ public class Sysinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        try {   
-            NewJDialog njdialog = new NewJDialog(Sysinfo.this,true);                
+        try {
+            NewJDialog njdialog = new NewJDialog(Sysinfo.this, true);
             njdialog.setVisible(rootPaneCheckingEnabled);
-        }        
-        catch (Exception ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }        
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -242,7 +242,7 @@ public class Sysinfo extends javax.swing.JFrame {
         } catch (UnknownHostException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
