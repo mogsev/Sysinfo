@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class Delutil {
 
-    private final static String TEMP = "c://windows//temp//";
+    private final static String WINDOWS_TEMP = "c:/windows/temp/";
     private static String systemtemp;
     private static String userhome;
     private static String internettemp;
@@ -18,7 +18,7 @@ public class Delutil {
      * @return dir the full path on directory "Windows system temp"
      */
     public static String getDirWindowsTemp() {
-        return TEMP;
+        return WINDOWS_TEMP;
     }
 
     /**

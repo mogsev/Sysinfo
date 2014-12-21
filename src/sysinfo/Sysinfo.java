@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Sysinfo extends javax.swing.JFrame {
 
     static final String PROGRAM_NAME = "Systems Short Information";
-    static final String PROGRAM_VERSION = "1.4.51";
+    static final String PROGRAM_VERSION = "1.4.52";
     static final String EMAIL = "mogsev@gmail.com";
     static final String SF_URL = "http://sourceforge.net";
     static final String GITHUB_URL = "https://github.com/mogsev/Sysinfo";
@@ -242,7 +242,6 @@ public class Sysinfo extends javax.swing.JFrame {
         } catch (UnknownHostException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
